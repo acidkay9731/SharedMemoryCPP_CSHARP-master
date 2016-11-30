@@ -210,8 +210,11 @@ namespace SharedMemoryCSharp
         {
             if (workType == 'S')
             {
+                // 메모리에 할당할 내용
                 string strMessage = rand.Next(100).ToString("00");
+                // 유니코드 바이트 배열로 변환 
                 byte[] bMessage = Encoding.Unicode.GetBytes(strMessage);
+                // pBuf 에 내용을 씀
                 Marshal.Copy(bMessage, 0, pBuf, bMessage.Length);
 
                 txtMsg.AppendText("WriteMemory: " + strMessage + "\r\n");
@@ -254,6 +257,7 @@ namespace SharedMemoryCSharp
                     hMapFile = FileMappingNative.CreateFileMapping(
                         (IntPtr)FileMappingNative.INVALID_HANDLE_VALUE,
                         IntPtr.Zero,
+                        // 파일 Mapping 을 쓰기 가능으로 Open 
                         FileProtection.PAGE_READWRITE,
                         0,
                         BUFFER_SIZE,
@@ -275,6 +279,7 @@ namespace SharedMemoryCSharp
                     // 
 
                     // Create file view from the file mapping object.
+                    // 버퍼에 매핑, 향후 pBuf 를 통하여 메모리에 쓸 수 있음 
                     pBuf = FileMappingNative.MapViewOfFile(
                         hMapFile,
                         FileMapAccess.FILE_MAP_ALL_ACCESS,
