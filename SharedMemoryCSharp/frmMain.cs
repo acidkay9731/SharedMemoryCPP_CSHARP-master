@@ -227,9 +227,9 @@ namespace SharedMemoryCSharp
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (btnStart.Text == "START")
+            if (btnStart.Text == "STOP")
             {
-                btnStart.Text = "STOP";
+                btnStart.Text = "START";
 
                 memoryTimer.Stop();
 
@@ -243,7 +243,7 @@ namespace SharedMemoryCSharp
             }
             else
             {
-                btnStart.Text = "START";
+                btnStart.Text = "STOP";
 
                 rbServer.Enabled = false;
                 rbClient.Enabled = false;
